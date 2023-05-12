@@ -46,7 +46,7 @@ public class Main {
         System.out.println(terre.getClass());
         
         //init nouvelle météorite
-        Meteorite nabilla =new Meteorite(1, "NABILLA", 0, 0, new Position(0, 0));
+        Meteorite nabilla =new Meteorite(1, "NABILLA", 0, 0, new Position(1.489118235293327E8, 5125311.031427594));//pour test
         
         //init lanceur du type météorite NORMAL
         LanceurMeteorite eventNabilla = new  LanceurMeteorite(nabilla, Facto_enum_meteor.NORMAL);

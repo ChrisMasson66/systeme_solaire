@@ -1,15 +1,11 @@
 package main;
 
-import java.io.Console;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONObject;
 
-
-
-import netscape.javascript.JSObject;
 
 public class System_s {
     private String nom;
@@ -59,56 +55,68 @@ public class System_s {
     public void turnall(int j) throws FileNotFoundException {
 
         Logmachine l = new Logmachine();
-
-        for (int i = 0; i < j; i++) 
         
-        {
-            for (CorpsCeleste p : this.corps)           
-            {
-            	
+        
+        
+        
+        for (int i = 0; i < j; i++) 
+ 		{
+             for (CorpsCeleste p : this.corps) 
+ 			{
+                 if (p.getClass() == Planet.class) {
+                     ((Planet) p).turn();
+                 }
+             }
+             
+             
+            for (CorpsCeleste c:this.corps)
+ 			{
+                 
             	//récupération du CorpsCeleste
             	if(this.meteor != null) 
             	{
-            		//test d'évènement ou non
-            	 boolean isCollision = 	this.meteor.InterceptorPlanete(p);   
-            	 
-            	 //si vrai, alors event
-            /*	 if(isCollision!=false)
-            	 {
-            		 String info = this.meteor.getInfoEvent();
-            		 
-            		 InfoEvent event = new InfoEvent(p, info);
-            		         		 
-            		 Singleton.getInstance().addjson(event.toJSON());
-            		 
-            		 Singleton.getInstance().addjson(p.toJSON());
-            		 
-            		 //System.out.print("COLLISION");
-            		 
-            	 }*/
-            	 
-            	 
-            }
+		            	//test d'évènement ou non
+		            	 boolean isCollision = 	this.meteor.InterceptorPlanete(c);   
+		            	 
+		            	 //si vrai, alors event
+		            	 if(isCollision!=false)
+		            	 {
+		            		 //récup de l'info de l'event
+		            		 String info = this.meteor.getInfoEvent();
+		            		 
+		            		 InfoEvent event = new InfoEvent(c, info);
+		            		  //on enregistre avec l'instance du singletosn      		 
+		            		 Singleton.getInstance().addjson(event.toJSON());
+		            		            		 		            		 
+		            	 }
+		            	 
+		                 //sinon normal	on enregistre le corps celeste
+		                 else {
+		                 	
+		                  	Singleton.getInstance().addjson(c.toJSON());
+		     					
+		     				}
+           	 
+            	}
+            	//aucun météor
+            	else 
+            	{
+            		Singleton.getInstance().addjson(c.toJSON());
+				}
             	
-            	            	
-                if (p.getClass() == Planet.class)                 
-                {
-                    ((Planet) p).turn();
-                    
-                }
-            }
-            
-            
-            
-            for (CorpsCeleste c:this.corps)
-            
-            {
-                Singleton.getInstance().addjson(c.toJSON());
-            }
 
-            Singleton.getInstance().wcycle();
+            			
+ 			}
 
-        }
+             Singleton.getInstance().wcycle();
+
+         }
+        
+        
+        
+        
+
+      
         Singleton.getInstance().printlog();
     }
 }

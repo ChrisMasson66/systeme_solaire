@@ -23,6 +23,10 @@ public class LanceurMeteorite {
 		
 	}
 	
+	//TODO
+	//1 vérifier avec le nom des astres
+	//2 incorporer l'intersection avec cercle
+	
 	//cas d'une collision
 	 public boolean InterceptorPlanete(CorpsCeleste cs)
 	 {
@@ -40,7 +44,6 @@ public class LanceurMeteorite {
             	 messageRetourString = eventCollision;
             	 isCollision =  true;
                  break;
-      
              
              case TUEUSEPLANETE:
             	 
@@ -50,8 +53,7 @@ public class LanceurMeteorite {
 
              default : 
             	 isCollision = false;
-            	 break;
-			 
+            	 break;			 
 			 
 			 }		 
 			 
@@ -66,23 +68,17 @@ public class LanceurMeteorite {
 	
 	 //retourne le messege info type de collision
 	 public String getInfoEvent()
-	 {
-		 
+	 {		 
 		 return messageRetourString;
 	 }
 	 
 	
+	 //TODO avec circonférence
 	 private boolean InterceptorPerimetre(System_s s)
-	 {
-		 
-		 
+	 {	 
 		return false; 
 	 }
 	
-	 /*
-	  *     NORMAL,
-    TUEUSEPLANETE
-	  * 
-	  * */
+
 
 }
